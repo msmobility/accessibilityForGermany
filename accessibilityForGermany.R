@@ -44,12 +44,11 @@ sum1 <- sum %>%
                    access_1 = sum(exp_pop_1), access_1.2 = sum(exp_pop_1.2), access_1.4 = sum(exp_pop_1.4),
                    access_2.5 = sum(exp_pop_2.5), access_5 = sum(exp_pop_5), access_10 = sum(exp_pop_10))
 
-sum1$access_2 <- sum1$access/100000
 colnames(sum1)[colnames(sum1)=="TO"] <- "OBJECTID"
 sum2 <- merge(sum1, pop_per_zone, by = "OBJECTID")
 
 setwd("E:/skims/accessibility")
-fwrite(sum2,"transit_access_tt_b.csv")
+fwrite(sum2,"car_access_tt_b.csv")
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
