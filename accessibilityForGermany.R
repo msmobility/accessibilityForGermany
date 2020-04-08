@@ -31,11 +31,8 @@ colnames(pop_per_zone)[colnames(pop_per_zone)=="zone_id"] <- "OBJECTID"
 # column rename
 sum <- merge(tt, pop_per_zone, by = "OBJECTID")
 sum$exp_pop_04 <- sum$exp_04_tt * sum$pop/1000000
-#sum$exp_pop_05 <- sum$exp_05_tt * sum$pop/1000000
 sum$exp_pop_06 <- sum$exp_06_tt * sum$pop/1000000
-#sum$exp_pop_07 <- sum$exp_07_tt * sum$pop/1000000
 sum$exp_pop_08 <- sum$exp_08_tt * sum$pop/1000000
-#sum$exp_pop_09 <- sum$exp_09_tt * sum$pop/1000000
 sum$exp_pop_1 <- sum$exp_1_tt * sum$pop/1000000
 sum$exp_pop_1.2 <- sum$exp_1.2_tt * sum$pop/1000000
 sum$exp_pop_1.4 <- sum$exp_1.4_tt * sum$pop/1000000
@@ -79,6 +76,7 @@ pop_per_zone <- population %>%
 colnames(pop_per_zone)[colnames(pop_per_zone)=="zone_id"] <- "OBJECTID"
 # column rename
 sum <- merge(tt, pop_per_zone, by = "OBJECTID")
+# 1000 000 only to make number smaller. can be erased if needed
 sum$access_30 <- ifelse(sum$tt_min <= 30, sum$pop/1000000, 0)
 sum$access_60 <- ifelse(sum$tt_min <= 60, sum$pop/1000000, 0)
 sum$access_90 <- ifelse(sum$tt_min <= 90, sum$pop/1000000, 0)
