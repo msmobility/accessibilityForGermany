@@ -8,11 +8,8 @@ tt <- car_tt[!grepl("Inf", car_tt$VALUE),]
 
 tt$tt_h <- tt$VALUE/3600 # convert to hours
 tt$exp_04_tt <- exp(0.4*tt$tt_h)  # Beta 0.4
-#tt$exp_05_tt <- exp(-0.5*tt$tt_h)  # Beta 0.5
 tt$exp_06_tt <- exp(-0.6*tt$tt_h)  # Beta 0.6
-#tt$exp_07_tt <- exp(-0.7*tt$tt_h)  # Beta 0.7
 tt$exp_08_tt <- exp(-0.8*tt$tt_h)  # Beta 0.8
-#tt$exp_09_tt <- exp(-0.9*tt$tt_h)  # Beta 0.9
 tt$exp_1_tt <- exp(-1*tt$tt_h)  # Beta 1
 tt$exp_1.2_tt <- exp(1.2*tt$tt_h)  # Beta 1.2
 tt$exp_1.4_tt <- exp(-1.4*tt$tt_h)  # Beta 1.4
@@ -30,6 +27,7 @@ pop_per_zone <- population %>%
 colnames(pop_per_zone)[colnames(pop_per_zone)=="zone_id"] <- "OBJECTID"
 # column rename
 sum <- merge(tt, pop_per_zone, by = "OBJECTID")
+# 1000 000 can be removed if needed
 sum$exp_pop_04 <- sum$exp_04_tt * sum$pop/1000000
 sum$exp_pop_06 <- sum$exp_06_tt * sum$pop/1000000
 sum$exp_pop_08 <- sum$exp_08_tt * sum$pop/1000000
