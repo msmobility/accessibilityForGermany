@@ -20,9 +20,9 @@ tt$exp_10_tt <- exp(-10*tt$tt_h)  # Beta 10
 # column rename
 colnames(tt)[colnames(tt)=="FROM"] <- "OBJECTID"
 
-population <- read_csv("E:/skims/shp/new_zones_with_pop/zones_with_pop_final.csv")
+population <- read_csv("E:/skims/shp/new_zones_with_pop/zones_with_popl.csv")
 pop_per_zone <- population %>%
-  dplyr::group_by(zone_id) %>%
+  dplyr::group_by(taz) %>%
   dplyr::summarize(pop = sum(population))
 colnames(pop_per_zone)[colnames(pop_per_zone)=="zone_id"] <- "OBJECTID"
 # column rename
