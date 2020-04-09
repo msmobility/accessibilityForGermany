@@ -20,13 +20,10 @@ tt$exp_10_tt <- exp(-10*tt$tt_h)  # Beta 10
 # column rename
 colnames(tt)[colnames(tt)=="FROM"] <- "OBJECTID"
 
-population <- read_csv("E:/skims/shp/new_zones_with_pop/zones_with_popl.csv")
-pop_per_zone <- population %>%
-  dplyr::group_by(taz) %>%
-  dplyr::summarize(pop = sum(population))
-colnames(pop_per_zone)[colnames(pop_per_zone)=="zone_id"] <- "OBJECTID"
+population <- read_csv("E:/skims/accessibility/pop_per_zone.csv")
+colnames(population)[colnames(population)=="TAZ"] <- "OBJECTID"
 # column rename
-sum <- merge(tt, pop_per_zone, by = "OBJECTID")
+sum <- merge(tt, population, by = "OBJECTID")
 # 1000 000 can be removed if needed
 sum$exp_pop_04 <- sum$exp_04_tt * sum$pop/1000000
 sum$exp_pop_06 <- sum$exp_06_tt * sum$pop/1000000
@@ -48,7 +45,7 @@ colnames(sum1)[colnames(sum1)=="TO"] <- "OBJECTID"
 sum2 <- merge(sum1, pop_per_zone, by = "OBJECTID")
 
 setwd("E:/skims/accessibility")
-fwrite(sum2,"car_access_tt_b.csv")
+fwrite(sum2,"car_access.csv")
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
@@ -64,15 +61,13 @@ infin <- car_tt[grepl("Inf", car_tt$VALUE),]
 tt <- car_tt[!grepl("Inf", car_tt$VALUE),]
 
 tt$tt_min <- tt$VALUE/60 # convert to hours
+# column rename
 colnames(tt)[colnames(tt)=="FROM"] <- "OBJECTID"
 
-population <- read_csv("E:/skims/shp/new_zones_with_pop/zones_with_pop_final.csv")
-pop_per_zone <- population %>%
-  dplyr::group_by(zone_id) %>%
-  dplyr::summarize(pop = sum(population))
-colnames(pop_per_zone)[colnames(pop_per_zone)=="zone_id"] <- "OBJECTID"
+population <- read_csv("E:/skims/accessibility/pop_per_zone.csv")
+colnames(population)[colnames(population)=="TAZ"] <- "OBJECTID"
 # column rename
-sum <- merge(tt, pop_per_zone, by = "OBJECTID")
+sum <- merge(tt, population, by = "OBJECTID")
 # 1000 000 only to make number smaller. can be erased if needed
 sum$access_30 <- ifelse(sum$tt_min <= 30, sum$pop/1000000, 0)
 sum$access_60 <- ifelse(sum$tt_min <= 60, sum$pop/1000000, 0)
