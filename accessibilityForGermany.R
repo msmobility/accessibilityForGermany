@@ -11,9 +11,9 @@ tt$exp_04_tt <- exp(0.4*tt$tt_h)  # Beta 0.4
 tt$exp_06_tt <- exp(-0.6*tt$tt_h)  # Beta 0.6
 tt$exp_08_tt <- exp(-0.8*tt$tt_h)  # Beta 0.8
 tt$exp_1_tt <- exp(-1*tt$tt_h)  # Beta 1
-tt$exp_1.2_tt <- exp(1.2*tt$tt_h)  # Beta 1.2
+tt$exp_1.2_tt <- exp(-1.2*tt$tt_h)  # Beta 1.2
 tt$exp_1.4_tt <- exp(-1.4*tt$tt_h)  # Beta 1.4
-tt$exp_2.5_tt <- exp(2.5*tt$tt_h)  # Beta 2.5
+tt$exp_2.5_tt <- exp(-2.5*tt$tt_h)  # Beta 2.5
 tt$exp_5_tt <- exp(-5*tt$tt_h)  # Beta 5
 tt$exp_10_tt <- exp(-10*tt$tt_h)  # Beta 10
 
