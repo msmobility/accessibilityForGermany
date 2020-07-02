@@ -2,8 +2,8 @@ pacman::p_load(dplyr, readr, sf, tmap, leaflet, ggplot2)
 
 ##Path, zone system#############
 #edit the paths to the required information
-path_to_access_results_folder = "c:/users/carlloga/LRZ Sync+Share/CAPE/data/accessibility/"
-path_to_zone_system_shp = "c:/users/carlloga/LRZ Sync+Share/CAPE/data/zones_de_upd/Zone_shape_file/de_zones_attributes.shp"
+path_to_access_results_folder = "INSERT_PATH_HERE/LRZ Sync+Share/CAPE/data/accessibility/"
+path_to_zone_system_shp = "INSERT_PATH_HERE/LRZ Sync+Share/CAPE/data/zones_de_upd/Zone_shape_file/de_zones_attributes.shp"
 
 zones = st_read(path_to_zone_system_shp)
 zones = zones %>% select(TAZ_id)
