@@ -19,13 +19,17 @@ shp = st_read("c:/models/transit_germany/input/zones/de_zones_attributes.shp")
 
 p =  tm_basemap(leaflet::providers$CartoDB)
 
+all_times_from = list()
+
 
 for (mode_index in 1:length(modes)){
   times_from = all[[mode_index]] %>% filter(FROM == origin_id)
   times_from$TO = as.numeric(times_from$TO)
   times_from$FROM = as.numeric(times_from$FROM)
   times_from$VALUE = as.numeric(times_from$VALUE)/3600
-  
+
+  all_times_from[[mode_index]] = times_from
+    
   this_shp = shp %>% left_join(times_from, by = c("TAZ_id"="TO"))
 
   p = p + tm_shape(this_shp, modes[mode_index])
@@ -33,4 +37,3 @@ for (mode_index in 1:length(modes)){
 }
 
 tmap_leaflet(p)
-☺
