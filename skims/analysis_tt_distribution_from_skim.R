@@ -73,6 +73,17 @@ for (j in 1:11717){
   intrazonals = intrazonals %>% bind_rows(data.frame(zone = j, t = t_matrix[j,j], d = d_matrix[j,j]))
 }
 
-ggplot(intrazonals, aes(x = d/1000)) + geom_histogram() + xlab("Distance (all intrazonals) (km)")
+zeros = intrazonals %>% filter(t == 0)
+
+ggplot(intrazonals, aes(x = d/1000)) + geom_histogram(binwidth = 1) + xlab("Distance (all intrazonals) (km)")
 ggplot(intrazonals, aes(x = t/60)) + geom_histogram() + xlab("Time (all intrazonals) (min)")
 ggplot(intrazonals, aes(x = d/t * 3.6)) + geom_histogram() + xlab("Speed (all intrazonals) (km/h)")
+
+
+p =  tm_basemap(leaflet::providers$CartoDB)
+test = shp %>% left_join(intrazonals, by =c("TAZ_id" = "zone"))
+p = p + tm_shape(test)
+
+
+p = p + tm_polygons(col ="t", alpha = 0.6, breaks = c(0,0.5, 1, 2, 3, 4, 5, 100) ) 
+tmap_leaflet(p)
