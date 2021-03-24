@@ -9,6 +9,7 @@ pacman::p_load(readr, dplyr, ggplot2,sf,tmap, tidyr, rhdf5, here)
 #source("omx/omx2.R")
 
 source(paste(here(), "/omx/omx2.R", sep = ""))
+source("C:/code/accessibilityForGermany/omx/omx2.R")
 
 path = "Z:/projects/2019/BASt/data/matrices/car/omx_car_matrix/omx_de_w_connectors/"
 
